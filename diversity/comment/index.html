@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+<title>留言 | Diversity</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="author" content="John Doe">
+
+<meta name="description" content="博客多样性，一款多主题自由切换的Hexo主题">
+
+
+<meta property="og:title" content="Diversity"/>
+<meta property="og:site_name" content="Hexo"/>
+
+<meta property="og:image" content="/images/diversity.png" />
+
+
+
+<link rel="shortcut icon" href="/images/diversity.ico">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<script src="/js/jquery-3.6.0.min.js"></script>
+
+
+<script src="/js/js.cookie-2.2.1.min.js"></script>
+
+
+<script class="diversity-config" data-name="main" type="application/json">{"author":"John Doe","hostname":"example.com","theme":"diversity","version":"2.4.0","themes":["landscape"],"darkmode":0,"source":{"landscape":"https://github.com/hexojs/hexo-theme-landscape","phase":"https://github.com/hexojs/hexo-theme-phase","light":"https://github.com/hexojs/hexo-theme-light"},"page":{"header_nav_position":null,"blog_scroll_height":200},"back2top":{"enable":true,"enable_scroll_percent":false,"scroll_percent":5,"position":"right","color":"#fc6423","exclude":["next"]},"menu":{"blog":"/diversity/blog/","theme":"/diversity/theme/","comment":"/diversity/comment/","game":"/diversity/game/"},"index":"/diversity/blog/","button":{"theme_default":"DEFAULT","cancel_default":"CANCEL","theme_redirect":"REDIRECT","theme_source":"SOURCE"},"gritter":{"title_theme":"Theme [{0}]","text_configured":"Configured","text_canceled":"Cancelled","text_clicktojump":"Click here"},"introduction":{"landscape":"A brand new default theme for Hexo."},"no_theme":{"back_image":"/images/back.jpg","tip_text":"Default theme not set up! Click the button below to configure now.","btn_text":"Theme Select"}}</script>
+
+<script src="/js/diversity.js"></script>
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+<body class="bg-color">
+    <div id="container">
+        <header id="header" class="header-wrapper">
+    <div id="header-inner" class="inner">
+        <h1 id="logo-wrap">
+            <a href="/" id="logo">Diversity</a>
+        </h1>
+        <ul id="main-nav">
+            <li class="main-nav-li"><a href="/diversity/blog/" class="main-nav-link">Blog</a></li><li class="main-nav-li"><a href="/diversity/theme/" class="main-nav-link">Theme</a></li><li class="main-nav-li"><a href="/diversity/comment/" class="main-nav-link">Comment</a></li><li class="main-nav-li"><a href="/diversity/game/" class="main-nav-link">Game</a></li>
+        </ul>
+
+        
+
+        <a id="mobile-nav-toggle">
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+            <span class="mobile-nav-toggle-bar"></span>
+        </a>
+    </div>
+</header>
+        <div id="content-wrap">
+    <div id="content" class="wrapper">
+        <div id="content-inner">
+            <article class="article-container" itemscope itemtype="http://schema.org/Article">
+                <div class="article-inner">
+                    <div class="article">
+                        <div class="inner">
+                            <header class="article-header">
+                                
+                                <h1 class="article-title" itemprop="name">Diversity 主题接入介绍</h1>
+                            </header>
+                            <div class="article-content" itemprop="articleBody">
+                                <html><head></head><body><p><a target="_blank" rel="noopener" href="https://github.com/huazie/huazie.github.io/actions/workflows/pages.yml"><img src="https://img.shields.io/github/actions/workflow/status/huazie/huazie.github.io/pages.yml?branch=main&amp;label=build%20and%20deploy&amp;logo=github" alt="build and deploy"></a> <a target="_blank" rel="noopener" href="https://www.npmjs.com/package/hexo-theme-diversity"><img src="https://img.shields.io/npm/v/hexo-theme-diversity.svg?style=flat&amp;logo=npm" alt="NPM version"></a> <a target="_blank" rel="noopener" href="https://hexo.io/"><img src="https://img.shields.io/badge/hexo-%3E=5.3.0-blue?style=flat&amp;logo=hexo" alt="Hexo version"></a> <a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-orange" alt="license"></a> <a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/stargazers"><img src="https://img.shields.io/github/stars/huazie/hexo-theme-diversity?style=flat" alt="GitHub Repo stars"></a></p>
+<p>博客多样性，一款多主题自由切换的 <strong>Hexo</strong> 主题</p>
+<h2 id="安装" class="article-heading"><a href="#安装" class="headerlink" title="安装"></a>安装<a class="article-anchor" href="#安装" aria-hidden="true"></a></h2><h3 id="1-接入Diversity主题" class="article-heading"><a href="#1-接入Diversity主题" class="headerlink" title="1. 接入Diversity主题"></a>1. 接入Diversity主题<a class="article-anchor" href="#1-接入Diversity主题" aria-hidden="true"></a></h3><p>在你的 <strong>Hexo</strong> 项目根目录，执行以下命令，并将 <code>_config.yml</code> 中的 <code>theme</code> 修改为 <code>diversity</code>。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone --depth 1 https://github.com/huazie/hexo-theme-diversity themes/diversity</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight diff"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_config.yml</span><br><span class="line"><span class="deletion">- theme: other-theme</span></span><br><span class="line"><span class="addition">+ theme: diversity</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>同步 Diversity 主题配置和资源</strong></p>
+<p>你可以采用如下三种方式：</p>
+<ol>
+<li>手动同步【不推荐】</li>
+</ol>
+<p>将 <code>themes/diversity</code> 目录下的 <code>_config.diversity.yml</code>，添加到你的 <strong>Hexo</strong> 项目根目录。</p>
+<p>将 <code>themes/diversity</code> 目录下的 <code>other</code> 目录中的目录和文件复制或移动到你的 <strong>Hexo</strong> 项目根目录。</p>
+<ol start="2">
+<li>执行 <code>hexo server</code> 命令后同步 <code>_config.diversity.yml</code> 配置和 <code>other</code> 目录内容。【推荐】</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 本地预览时同步【非强制覆盖】</span><br><span class="line">hexo s</span><br><span class="line"># 使用强制覆盖模式</span><br><span class="line">hexo s --force     // 本地预览时强制覆盖已存在文件</span><br><span class="line">hexo s -f          // 本地预览时强制覆盖已存在文件（参数简写）</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>执行 <code>hexo dsync</code> 命令专门同步 <code>_config.diversity.yml</code> 配置和 <code>other</code> 目录内容。【推荐】</li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 本地直接同步【非强制覆盖】</span><br><span class="line">hexo dsync</span><br><span class="line"># 使用强制覆盖模式：</span><br><span class="line">hexo dsync --force // 本地同步时强制覆盖已存在文件</span><br><span class="line">hexo dsync -f      // 本地同步时强制覆盖已存在文件（参数简写）</span><br></pre></td></tr></tbody></table></figure>
+
+<p>当然你也可以选择通过项目依赖导入，在 <strong>Hexo</strong> 项目 <code>package.json</code> 文件中添加如下【<code>x.x.x</code> 替换为指定版本号】：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">"dependencies"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"hexo-theme-diversity"</span><span class="punctuation">:</span> <span class="string">"^x.x.x"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-接入其他主题" class="article-heading"><a href="#2-接入其他主题" class="headerlink" title="2. 接入其他主题"></a>2. 接入其他主题<a class="article-anchor" href="#2-接入其他主题" aria-hidden="true"></a></h3><p>有如下两种方式【查看 <code>_config.diversity.yml</code> 中 <code>themes</code> 属性配置】：</p>
+<ul>
+<li>将待接入主题相关的源码下载到项目根目录的 <code>themes</code> 目录下，并各自命名，如下所示【其中 <code>diversity</code> 是上述所下载的】：</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├─themes</span><br><span class="line">│  ├─diversity</span><br><span class="line">│  ├─light</span><br><span class="line">│  ├─phase</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>通过项目依赖导入，比如 <code>landscape</code> 主题，如下：</li>
+</ul>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">"dependencies"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"hexo-theme-landscape"</span><span class="punctuation">:</span> <span class="string">"^1.0.0"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加其他主题相关配置，详细说明请查阅 <a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/blob/main/docs/zh/other-config.md">docs/zh/other-config.md</a>。</p>
+<h2 id="配置" class="article-heading"><a href="#配置" class="headerlink" title="配置"></a>配置<a class="article-anchor" href="#配置" aria-hidden="true"></a></h2><p>详细了解，请翻看项目 <a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/blob/main/README.md">README</a> 文件。</p>
+<h2 id="文档" class="article-heading"><a href="#文档" class="headerlink" title="文档"></a>文档<a class="article-anchor" href="#文档" aria-hidden="true"></a></h2><p>详细了解，请翻看 <strong>Huazie</strong> 的博客分类之 <a href="../../diversity/blog/?path=/categories/%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6-Hexo/">博客框架-Hexo</a> 中的文章。 </p>
+<h2 id="版本" class="article-heading"><a href="#版本" class="headerlink" title="版本"></a>版本<a class="article-anchor" href="#版本" aria-hidden="true"></a></h2><p>详细了解，请查看项目 <a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/releases">Releases</a>。</p>
+<h2 id="问题" class="article-heading"><a href="#问题" class="headerlink" title="问题"></a>问题<a class="article-anchor" href="#问题" aria-hidden="true"></a></h2><p>反馈 <strong>Bug</strong> 或者咨询使用问题，可以</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/issues">Issues</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/huazie/hexo-theme-diversity/discussions">Discussions</a></p>
+</li>
+<li><p>下方留言评论</p>
+</li>
+</ul>
+</body></html>
+                            </div>
+                            <footer class="article-footer">
+                                <time class="article-footer-updated" datetime="2026-04-16" itemprop="dateModified">Last updated: 2026-04-16</time>
+                            </footer>
+                            
+                                
+                                    
+                                    <!-- Comments layout not found -->
+                                
+                            
+                        </div>
+                    </div>
+                    <aside id="article-toc" role="navigation">
+                        <div id="article-toc-inner">
+                            <strong class="article-toc-title">Contents</strong>
+                            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%8E%A5%E5%85%A5Diversity%E4%B8%BB%E9%A2%98"><span class="toc-text">1. 接入Diversity主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A5%E5%85%A5%E5%85%B6%E4%BB%96%E4%B8%BB%E9%A2%98"><span class="toc-text">2. 接入其他主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3"><span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%88%E6%9C%AC"><span class="toc-text">版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a></li></ol>
+                            <a href="#" id="article-toc-top">Back to Top</a>
+                        </div>
+                    </aside>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+    </div>
+    <div id="mobile-nav-dimmer"></div>
+    <nav id="mobile-nav">
+    <div id="mobile-nav-inner">
+        <ul id="mobile-nav-list">
+            <li class="mobile-nav-li"><a href="/diversity/blog/" class="mobile-nav-link">Blog</a></li><li class="mobile-nav-li"><a href="/diversity/theme/" class="mobile-nav-link">Theme</a></li><li class="mobile-nav-li"><a href="/diversity/comment/" class="mobile-nav-link">Comment</a></li><li class="mobile-nav-li"><a href="/diversity/game/" class="mobile-nav-link">Game</a></li>
+        </ul>
+    </div>
+</nav>
+    <!-- 导航栏 -->
+
+<script src="/js/nav.js"></script>
+
+</body>
+</html>
