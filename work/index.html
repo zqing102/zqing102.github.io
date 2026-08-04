@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Work | Hexo</title><meta name="author" content="Quincy Zheng"><meta name="copyright" content="Quincy Zheng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="说明：此处为原始 Markdown 内容区域，模板会在页面底部完整渲染以下内容。如需要恢复之前的简历详情，请直接替换本文档内容。  教育背景上海外国语大学 · 国际商务（英语） 本科 · 2022.09 - 2026.06  GPA：3.7 &#x2F; 4.0 主修课程：国际贸易、跨文化商务沟通、商务统计、数字营销 荣誉：校优秀学生奖学金、优秀学生干部  科研经历面向出海企业的用户增长策略研究">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Work">
+<meta property="og:url" content="http://example.com/work/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="说明：此处为原始 Markdown 内容区域，模板会在页面底部完整渲染以下内容。如需要恢复之前的简历详情，请直接替换本文档内容。  教育背景上海外国语大学 · 国际商务（英语） 本科 · 2022.09 - 2026.06  GPA：3.7 &#x2F; 4.0 主修课程：国际贸易、跨文化商务沟通、商务统计、数字营销 荣誉：校优秀学生奖学金、优秀学生干部  科研经历面向出海企业的用户增长策略研究">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-08-04T07:15:18.000Z">
+<meta property="article:modified_time" content="2026-08-04T14:43:41.593Z">
+<meta property="article:author" content="Quincy Zheng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/work/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Work',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="page type-work" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Hexo</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">Work</h1></div></header><main class="layout" id="content-inner"><div id="page"><div id="work-internship-map"><div class="work-hero"><div class="work-hero-texture"></div><div class="work-hero-ink"><svg width="0" height="0"><defs><filter id="ink-texture" x="-20%" y="-20%" width="140%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="4" result="noise"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="noise" scale="28" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs></svg></div><div class="work-hero-content"><h1 class="work-hero-title">WORK MAP</h1><p class="work-hero-sub">我的实习成长地图</p><div class="work-hero-line"></div></div></div><div class="work-map-section"><h2 class="section-title"><span class="title-icon">🗺️</span><span>实习地图</span></h2><p class="section-subtitle">点击节点查看详细经历</p><div class="work-map-desktop"><svg class="work-map-svg" viewBox="0 0 1200 1300" preserveAspectRatio="xMidYMid meet"><defs><pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="0.8" fill="currentColor" opacity="0.08"></circle></pattern><linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8ab4f8"></stop><stop offset="50%" stop-color="#6c9ce0"></stop><stop offset="100%" stop-color="#4a7fc9"></stop></linearGradient><linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8ab4f8" stop-opacity="0"></stop><stop offset="50%" stop-color="#ffffff" stop-opacity="0.8"></stop><stop offset="100%" stop-color="#8ab4f8" stop-opacity="0"></stop><animate attributeName="x2" from="-100%" to="200%" dur="3s" repeatCount="indefinite"></animate></linearGradient></defs><rect x="0" y="0" width="1200" height="1300" fill="url(#mapGrid)"></rect><path class="road-shadow" d="M 220 180 C 500 180, 700 440, 900 440 C 1100 620, 300 620, 220 720 C -100 820, 700 820, 900 980" fill="none" stroke="rgba(138,180,248,0.2)" stroke-width="14" stroke-linecap="round"></path><path class="road-main" d="M 220 180 C 500 180, 700 440, 900 440 C 1100 620, 300 620, 220 720 C -100 820, 700 820, 900 980" fill="none" stroke="url(#pathGrad)" stroke-width="6" stroke-linecap="round" stroke-dasharray="3500" stroke-dashoffset="3500"></path><path class="road-glow" d="M 220 180 C 500 180, 700 440, 900 440 C 1100 620, 300 620, 220 720 C -100 820, 700 820, 900 980" fill="none" stroke="url(#flowGrad)" stroke-width="8" stroke-linecap="round" opacity="0.6"></path><circle class="road-start" cx="220" cy="180" r="8" fill="#8ab4f8" opacity="0.8"></circle><polygon class="road-end" points="900,965 900,995 912,980" fill="#4a7fc9"></polygon></svg><div class="work-node node-left is-completed" style="--nx:220; --ny:180" data-index="0" data-status="completed"><div class="node-status-badge">Completed</div><div class="node-card"><div class="node-company-icon">⭐</div><h3 class="node-company">哔哩哔哩</h3><p class="node-role">国际化产品实习</p><p class="node-time">2026.03 - 2026.06</p><div class="node-tags"><span class="node-tag">产品设计</span><span class="node-tag">用户研究</span><span class="node-tag">数据分析</span><span class="node-tag">海外运营</span></div><button class="node-detail-btn" onclick="toggleDetail(0)">查看详情 →</button></div></div><div class="work-node node-right is-completed" style="--nx:900; --ny:440" data-index="1" data-status="completed"><div class="node-status-badge">Completed</div><div class="node-card"><div class="node-company-icon">⭐</div><h3 class="node-company">字节跳动</h3><p class="node-role">用户产品运营</p><p class="node-time">2025.10 - 2026.02</p><div class="node-tags"><span class="node-tag">用户运营</span><span class="node-tag">内容增长</span><span class="node-tag">A/B 测试</span><span class="node-tag">数据分析</span></div><button class="node-detail-btn" onclick="toggleDetail(1)">查看详情 →</button></div></div><div class="work-node node-left is-completed" style="--nx:220; --ny:720" data-index="2" data-status="completed"><div class="node-status-badge">Completed</div><div class="node-card"><div class="node-company-icon">⭐</div><h3 class="node-company">波士顿科学</h3><p class="node-role">本地化产品运营</p><p class="node-time">2025.07 - 2025.10</p><div class="node-tags"><span class="node-tag">本地化</span><span class="node-tag">文档管理</span><span class="node-tag">AI 工具</span><span class="node-tag">项目管理</span></div><button class="node-detail-btn" onclick="toggleDetail(2)">查看详情 →</button></div></div><div class="work-node node-right is-future" style="--nx:900; --ny:980" data-index="3" data-status="future"><div class="node-status-badge">Future</div><div class="node-card"><div class="node-company-icon">⭐</div><h3 class="node-company">下一站</h3><p class="node-role">期待新的挑战</p><p class="node-time">2026.07 →</p><div class="node-tags"><span class="node-tag">产品经理</span><span class="node-tag">国际化</span><span class="node-tag">AI 产品</span></div><button class="node-detail-btn" onclick="toggleDetail(3)">查看详情 →</button></div></div></div><div class="work-map-mobile"><div class="mobile-timeline"><div class="timeline-line"></div><div class="mobile-node is-completed" data-index="0" data-status="completed"><div class="mobile-dot"></div><div class="mobile-card"><div class="mobile-status-badge">Completed</div><div class="mobile-company-icon">⭐</div><h3>哔哩哔哩</h3><p class="mobile-role">国际化产品实习</p><p class="mobile-time">2026.03 - 2026.06</p><div class="mobile-tags"><span class="mobile-tag">产品设计</span><span class="mobile-tag">用户研究</span><span class="mobile-tag">数据分析</span><span class="mobile-tag">海外运营</span></div><button class="mobile-detail-btn" onclick="toggleDetail(0)">查看详情 →</button></div></div><div class="mobile-node is-completed" data-index="1" data-status="completed"><div class="mobile-dot"></div><div class="mobile-card"><div class="mobile-status-badge">Completed</div><div class="mobile-company-icon">⭐</div><h3>字节跳动</h3><p class="mobile-role">用户产品运营</p><p class="mobile-time">2025.10 - 2026.02</p><div class="mobile-tags"><span class="mobile-tag">用户运营</span><span class="mobile-tag">内容增长</span><span class="mobile-tag">A/B 测试</span><span class="mobile-tag">数据分析</span></div><button class="mobile-detail-btn" onclick="toggleDetail(1)">查看详情 →</button></div></div><div class="mobile-node is-completed" data-index="2" data-status="completed"><div class="mobile-dot"></div><div class="mobile-card"><div class="mobile-status-badge">Completed</div><div class="mobile-company-icon">⭐</div><h3>波士顿科学</h3><p class="mobile-role">本地化产品运营</p><p class="mobile-time">2025.07 - 2025.10</p><div class="mobile-tags"><span class="mobile-tag">本地化</span><span class="mobile-tag">文档管理</span><span class="mobile-tag">AI 工具</span><span class="mobile-tag">项目管理</span></div><button class="mobile-detail-btn" onclick="toggleDetail(2)">查看详情 →</button></div></div><div class="mobile-node is-future" data-index="3" data-status="future"><div class="mobile-dot"></div><div class="mobile-card"><div class="mobile-status-badge">Future</div><div class="mobile-company-icon">⭐</div><h3>下一站</h3><p class="mobile-role">期待新的挑战</p><p class="mobile-time">2026.07 →</p><div class="mobile-tags"><span class="mobile-tag">产品经理</span><span class="mobile-tag">国际化</span><span class="mobile-tag">AI 产品</span></div><button class="mobile-detail-btn" onclick="toggleDetail(3)">查看详情 →</button></div></div></div></div></div><div class="work-detail-section"><div class="detail-card is-completed" id="detail-0" style="display:none"><div class="detail-header"><div class="detail-company-info"><h3>哔哩哔哩</h3><p>国际化产品实习</p><p class="detail-meta">2026.03 - 2026.06 · 上海</p></div><button class="detail-close" onclick="toggleDetail(0)">✕</button></div><div class="detail-body"><div class="detail-block"><h4>工作内容</h4><ul><li>负责海外用户入站体验优化，设计多币种本地化展示及 iOS 最低支付金额适配策略</li><li>参与设计中文内容亲和度分层模型，非中文 App 用户海外华人判断准确率上升 42.8%</li><li>参与海外搜推流量治理方案设计，支撑 10万+ 海外 DAU 独立流量池建设</li><li>负责 AI 原声翻译功能优化，用户满意度保持在 80% 以上</li></ul></div><div class="detail-block"><h4>获得能力</h4><div class="detail-skills"><span class="skill-tag">产品设计</span><span class="skill-tag">用户研究</span><span class="skill-tag">数据分析</span><span class="skill-tag">PRD 撰写</span><span class="skill-tag">多语言本地化</span></div></div></div></div><div class="detail-card is-completed" id="detail-1" style="display:none"><div class="detail-header"><div class="detail-company-info"><h3>字节跳动</h3><p>用户产品运营</p><p class="detail-meta">2025.10 - 2026.02 · 杭州</p></div><button class="detail-close" onclick="toggleDetail(1)">✕</button></div><div class="detail-body"><div class="detail-block"><h4>工作内容</h4><ul><li>完成 10万+ 关键词聚类及 Topic Cluster 建设，制定官网内容增长策略</li><li>借助 AI 工具优化内容生产流程，累计产出 1088 篇内容，核心关键词排名率达 92%</li><li>参与官网 Pricing 页面增长实验，通过 A/B Test 迭代页面信息架构与内容策略</li><li>负责海外官网 10 个语种、8752 个页面翻译上线，保障 Lark 全球化官网稳定运营</li></ul></div><div class="detail-block"><h4>获得能力</h4><div class="detail-skills"><span class="skill-tag">用户运营</span><span class="skill-tag">内容策略</span><span class="skill-tag">A/B 测试</span><span class="skill-tag">项目管理</span><span class="skill-tag">跨团队协调</span></div></div></div></div><div class="detail-card is-completed" id="detail-2" style="display:none"><div class="detail-header"><div class="detail-company-info"><h3>波士顿科学</h3><p>本地化产品运营</p><p class="detail-meta">2025.07 - 2025.10 · 上海</p></div><button class="detail-close" onclick="toggleDetail(2)">✕</button></div><div class="detail-body"><div class="detail-block"><h4>工作内容</h4><ul><li>参与 FARAPULSE 产品技术文档本地化项目，通过 Ollama 本地部署大语言模型建立知识库</li><li>协调多方按计划推进项目交付，进行任务分配与进度跟踪</li><li>通过 Windchill 进行文档与流程管理，提升团队协同效率与执行稳定性</li><li>使用 Excel 对产品数据、翻译进度进行清洗、分类和透视分析，输出项目进度报表</li></ul></div><div class="detail-block"><h4>获得能力</h4><div class="detail-skills"><span class="skill-tag">本地化运营</span><span class="skill-tag">文档管理</span><span class="skill-tag">LLM 应用</span><span class="skill-tag">数据分析</span><span class="skill-tag">流程优化</span></div></div></div></div><div class="detail-card is-future" id="detail-3" style="display:none"><div class="detail-header"><div class="detail-company-info"><h3>下一站</h3><p>期待新的挑战</p><p class="detail-meta">2026.07 → · —</p></div><button class="detail-close" onclick="toggleDetail(3)">✕</button></div><div class="detail-body"><div class="detail-block"><h4>工作内容</h4><ul><li>期待在更有挑战的平台上继续成长</li><li>关注 AI 产品、国际化、内容生态方向</li></ul></div><div class="detail-block"><h4>获得能力</h4><div class="detail-skills"><span class="skill-tag">产品思维</span><span class="skill-tag">国际化视野</span><span class="skill-tag">持续学习</span><span class="skill-tag">AI 探索</span></div></div></div></div></div><div class="work-summary-section"><h2 class="section-title"><span class="title-icon">📊</span><span>能力成长总结</span></h2><div class="summary-grid"><div class="summary-card"><div class="summary-icon">🎯</div><h4>产品能力</h4><p>从本地化运营到国际化产品设计，逐步建立完整的产品思维与方法论</p><div class="summary-skills"><span>PRD撰写</span><span>需求分析</span><span>A/B测试</span><span>用户研究</span></div></div><div class="summary-card"><div class="summary-icon">🌐</div><h4>国际化视野</h4><p>深度参与海外产品运营与本地化，覆盖 10+ 语种市场</p><div class="summary-skills"><span>多语言本地化</span><span>海外用户运营</span><span>跨文化沟通</span><span>全球化策略</span></div></div><div class="summary-card"><div class="summary-icon">🤖</div><h4>AI 应用</h4><p>熟练运用 AI 工具提升工作效率，探索大模型在产品中的应用</p><div class="summary-skills"><span>LLM 应用</span><span>AI 工具链</span><span>内容生成</span><span>数据分析</span></div></div><div class="summary-card"><div class="summary-icon">🤝</div><h4>协作与沟通</h4><p>具备跨团队协调经验，推动多方协作完成复杂项目交付</p><div class="summary-skills"><span>项目管理</span><span>跨团队协调</span><span>文档规范</span><span>流程优化</span></div></div></div></div><div class="work-original-content"><div class="work-content-divider"></div><blockquote>
+<p>说明：此处为原始 Markdown 内容区域，模板会在页面底部完整渲染以下内容。如需要恢复之前的简历详情，请直接替换本文档内容。</p>
+</blockquote>
+<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><p><strong>上海外国语大学</strong> · 国际商务（英语）</p>
+<p>本科 · 2022.09 - 2026.06</p>
+<ul>
+<li>GPA：3.7 &#x2F; 4.0</li>
+<li>主修课程：国际贸易、跨文化商务沟通、商务统计、数字营销</li>
+<li>荣誉：校优秀学生奖学金、优秀学生干部</li>
+</ul>
+<h2 id="科研经历"><a href="#科研经历" class="headerlink" title="科研经历"></a>科研经历</h2><p><strong>面向出海企业的用户增长策略研究</strong></p>
+<p>2025.03 - 2025.06</p>
+<ul>
+<li>基于 Bilibili、Lark 等产品的国际化实践，梳理内容型产品的海外冷启动路径</li>
+<li>搭建关键词-内容-转化漏斗模型，辅助官网 SEO 内容矩阵决策</li>
+</ul>
+<h2 id="竞赛荣誉"><a href="#竞赛荣誉" class="headerlink" title="竞赛荣誉"></a>竞赛荣誉</h2><ul>
+<li>全国大学生电子商务“创新、创意及创业”挑战赛 省级一等奖</li>
+<li>“互联网+”大学生创新创业大赛 校级银奖</li>
+<li>外研社英语演讲比赛 校级二等奖</li>
+</ul>
+<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><ul>
+<li><strong>产品工具</strong>：Figma、Axure、墨刀、ProcessOn</li>
+<li><strong>数据分析</strong>：SQL、Excel（数据透视 &#x2F; VLOOKUP）、Google Analytics</li>
+<li><strong>AI 工具</strong>：ChatGPT、Claude、Notion AI、本地 LLM 部署</li>
+<li><strong>语言</strong>：英语（CET-6 600+）、普通话</li>
+</ul>
+</div></div><script>document.addEventListener('DOMContentLoaded', function() {
+  // SVG 路径绘制动画
+  setTimeout(function() {
+    var mainRoad = document.querySelector('.road-main');
+    if (mainRoad) {
+      mainRoad.style.transition = 'stroke-dashoffset 2.5s ease-in-out';
+      mainRoad.style.strokeDashoffset = '0';
+    }
+  }, 300);
+
+  // 节点依次淡入
+  var nodes = document.querySelectorAll('.work-node, .mobile-node');
+  nodes.forEach(function(node, i) {
+    setTimeout(function() {
+      node.style.opacity = '1';
+      node.style.transform = 'translateY(0)';
+    }, 600 + i * 250);
+  });
+
+  // 暗色模式检测 - 监听 data-theme 变化
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.attributeName === 'data-theme') {
+        updateMapTheme();
+      }
+    });
+  });
+  observer.observe(document.documentElement, { attributes: true });
+});
+
+function toggleDetail(index) {
+  var card = document.getElementById('detail-' + index);
+  if (!card) return;
+
+  var isOpen = card.style.display === 'block';
+
+  // 关闭所有详情卡片
+  document.querySelectorAll('.detail-card').forEach(function(el) {
+    el.style.display = 'none';
+    el.classList.remove('is-active');
+  });
+
+  // 切换目标卡片
+  if (!isOpen) {
+    card.style.display = 'block';
+    setTimeout(function() {
+      card.classList.add('is-active');
+    }, 10);
+    // 滚动到卡片位置
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function updateMapTheme() {
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  var root = document.documentElement;
+  if (isDark) {
+    root.style.setProperty('--work-bg', '#0d1117');
+    root.style.setProperty('--work-card-bg', '#161b22');
+    root.style.setProperty('--work-card-border', 'rgba(138,180,248,0.15)');
+    root.style.setProperty('--work-text', 'rgba(255,255,255,0.85)');
+    root.style.setProperty('--work-text-sub', 'rgba(255,255,255,0.55)');
+  } else {
+    root.style.setProperty('--work-bg', '#f8fafc');
+    root.style.setProperty('--work-card-bg', '#ffffff');
+    root.style.setProperty('--work-card-border', 'rgba(138,180,248,0.25)');
+    root.style.setProperty('--work-text', '#1a202c');
+    root.style.setProperty('--work-text-sub', '#718096');
+  }
+}
+
+// 初始调用
+updateMapTheme();</script></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Quincy Zheng</div><div class="author-info-description"></div><div class="author-email"><a href="mailto:zq011002@outlook.com"><i class="fas fa-envelope"></i><span>zq011002@outlook.com</span></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/31/Quincy-s-First-Blog/" title="Quincy's First Blog">Quincy's First Blog</a><time datetime="2026-07-31T03:32:53.000Z" title="Created 2026-07-31 11:32:53">2026-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/31/hello-world/" title="Hello World">Hello World</a><time datetime="2026-07-31T03:26:05.853Z" title="Created 2026-07-31 11:26:05">2026-07-31</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Hexo/" style="font-size: 1.1em; color: #999">Hexo</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Blog/" style="font-size: 1.1em; color: #999">Blog</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/07/">
+            <span class="card-archive-list-date">
+              July 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">2</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-04T15:02:45.061Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Quincy Zheng</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
