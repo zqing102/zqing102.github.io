@@ -10557,6 +10557,7 @@ blockquote.pullquote.right {
   color: var(--proj-text-sub);
   line-height: 1.7;
   margin: 0 0 18px;
+  white-space: pre-line;
 }
 .card-tags {
   display: -webkit-box;
@@ -10603,6 +10604,11 @@ blockquote.pullquote.right {
   -ms-transition: all 0.3s;
   transition: all 0.3s;
   border-bottom: 1px solid currentColor;
+}
+#personal-section .projects-grid {
+  grid-template-columns: 1fr;
+  max-width: 560px;
+  margin: 0 auto;
 }
 .projects-empty {
   text-align: center;
@@ -10699,6 +10705,12 @@ blockquote.pullquote.right {
   .projects-original-content {
     padding: 0 16px;
   }
+}
+.detail-description {
+  white-space: pre-line;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.62);
+  margin: 0;
 }
 .detail-link-block {
   margin-top: 4px;
