@@ -1,8 +1,8 @@
 'use strict';
 
-/* 在线工作台：资料与任务清单仅保存在本机浏览器的 localStorage 中，不上传服务器。 */
+/* 在线工作台：资料与任务清单仅保存在本机浏览器的 localStorage 中。 */
 
-const STORE_KEY = 'resume-autofill.workbench.v1';
+const STORE_KEY = 'recruitment.autofill.online.v1';
 
 const SCHEMA = {
   personal_information: {
@@ -109,12 +109,6 @@ const DEMO_PROFILE = {
   languages_text: '英语 CET-6',
   portfolio: '',
 };
-
-const DEMO_TASKS = [
-  'https://careers.example.com/job/frontend-intern',
-  'https://jobs.example.org/campus/2026/resume',
-  'https://campus.example.net/apply/software-engineer',
-];
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => (
@@ -396,8 +390,9 @@ function renderTasks() {
   )).join('');
 }
 
-function addUrls(rawText) {
-  const urls = String(rawText || '').split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+$('add-tasks').addEventListener('click', () => {
+  const input = $('task-urls');
+  const urls = input.value.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
   if (!urls.length) { toast('请先粘贴至少一个招聘网址。', true); return; }
 
   const invalid = urls.find((u) => !/^https?:\/\/\S+$/i.test(u));
@@ -410,6 +405,7 @@ function addUrls(rawText) {
     tasks.push({ id: uid(), url, status: 'todo' });
     added++;
   }
+  input.value = '';
   save();
   renderTasks();
 
@@ -418,16 +414,6 @@ function addUrls(rawText) {
   } else {
     toast('这些网址已经在清单中。');
   }
-}
-
-$('add-tasks').addEventListener('click', () => {
-  const input = $('task-urls');
-  addUrls(input.value);
-  input.value = '';
-});
-
-$('demo-tasks').addEventListener('click', () => {
-  addUrls(DEMO_TASKS.join('\n'));
 });
 
 $('task-list').addEventListener('change', (e) => {
