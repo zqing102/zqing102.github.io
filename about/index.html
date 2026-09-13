@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>About me | I'm Quincy</title><meta name="author" content="Quincy Zheng"><meta name="copyright" content="Quincy Zheng"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="welcome to my blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About me">
+<meta property="og:url" content="http://example.com/about/index.html">
+<meta property="og:site_name" content="I&#39;m Quincy">
+<meta property="og:description" content="welcome to my blog">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-05T02:21:07.868Z">
+<meta property="article:modified_time" content="2026-08-04T16:01:24.000Z">
+<meta property="article:author" content="Quincy Zheng">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/favicon1.ico"><link rel="canonical" href="http://example.com/about/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'About me',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap" rel="stylesheet"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="page type-about" id="body-wrap"><main class="layout hide-aside" id="content-inner"><div id="page"><div class="portfolio-page" id="about-page"><nav class="portfolio-nav" aria-label="站内导航"><a class="portfolio-brand" href="/" aria-label="返回首页"><span class="portfolio-brand-mark">Q</span><span class="portfolio-brand-name">Quincy Zheng</span></a><div class="portfolio-nav-links"><a class="is-active" href="/about/">About</a><a href="/work/">Work</a><a href="/projects/">Projects</a><a href="/life/">Life</a></div></nav><section class="about-hero"><div class="about-hero-content"><div class="about-hero-text"><p class="portfolio-kicker">Profile · Product · AI</p><h1 class="meet-quincy-title"><span>Meet</span><em>Quincy.</em></h1><p class="about-hero-sub">在语言、产品与人工智能的交界处，寻找复杂问题更清晰、更有人情味的解法。</p><div class="about-hero-meta"><span>Shanghai, China</span><span>Available for opportunities</span></div></div><div class="dog-runner" data-run="dog"><img class="dog-image" src="/images/dog.jpg" alt="Quincy 的小狗"><span class="dog-caption">My tiny creative director</span></div></div></section><script>document.addEventListener('DOMContentLoaded', function () {
+  var runner = document.querySelector('[data-run="dog"]');
+  if (!runner) return;
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          runner.classList.add('is-visible');
+          observer.unobserve(runner);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(runner);
+  } else {
+    runner.classList.add('is-visible');
+  }
+});</script><section class="about-section"><div class="about-container"><h2 class="about-section-title"><span class="section-icon">01</span><span>个人档案</span></h2><div class="personal-grid"><div class="personal-card card-basic"><div class="info-list"><div class="info-row"><span class="info-label">姓名</span><span class="info-value">郑清</span></div><div class="info-row"><span class="info-label">性别</span><span class="info-value">女</span></div><div class="info-row"><span class="info-label">英文名</span><span class="info-value">Quincy</span></div><div class="info-row"><span class="info-label">籍贯</span><span class="info-value">重庆</span></div><div class="info-row"><span class="info-label">出生年月</span><span class="info-value">2001.10</span></div><div class="info-row"><span class="info-label">现居</span><span class="info-value">上海</span></div><div class="info-row"><span class="info-label">手机</span><span class="info-value">18290540942</span></div><div class="info-row"><span class="info-label">邮箱</span><span class="info-value">zq011002@outlook.com</span></div><div class="info-row"><span class="info-label">语言</span><span class="info-value">中文 / 英语 / 西班牙语</span></div></div></div></div></div></section><section class="about-section"><div class="about-container"><h2 class="about-section-title"><span class="section-icon">02</span><span>教育背景</span></h2><div class="education-grid"><div class="edu-card"><div class="edu-logo"><img src="/images/sw.png" alt="上海外国语大学"></div><div class="edu-info"><h3>上海外国语大学</h3><p class="edu-degree">英语语言文学专业 · 硕士研究生</p><p class="edu-time">2024.09 - 2027.06</p><div class="edu-highlights"><span class="highlight-tag">GPA 3.96/4.0</span><span class="highlight-tag">专业前5%</span><span class="highlight-tag">英语专八</span><span class="highlight-tag">基础西班牙语</span></div><div class="edu-courses"><span class="course-tag">翻译与技术</span><span class="course-tag">Python应用建设与语言研究</span><span class="course-tag">自然语言处理</span><span class="course-tag">语言智能技术与翻译研究</span></div><p class="edu-desc">国家"211工程"重点建设高校，坐落于上海，是中国外语类顶尖学府，以外语教育和跨文化交流见长；研究生期间发表C刊学术论文2篇</p></div></div><div class="edu-card"><div class="edu-logo"><img src="/images/cw.png" alt="四川外国语大学"></div><div class="edu-info"><h3>四川外国语大学</h3><p class="edu-degree">翻译专业 · 学士</p><p class="edu-time">2019.09 - 2023.06</p><div class="edu-highlights"><span class="highlight-tag">专业前5%</span><span class="highlight-tag">英语专八</span><span class="highlight-tag">基础西班牙语</span></div><div class="edu-courses"><span class="course-tag">笔译基础</span><span class="course-tag">交替传译</span><span class="course-tag">语言学概论</span><span class="course-tag">商务口译</span></div><p class="edu-desc">新中国最早成立的八大外院之一，全国首批翻译专业博士点，翻译专业学科评级A+，稳居全国翻译人才培养的第一方阵</p></div></div></div></div></section><section class="about-section"><div class="about-container"><h2 class="about-section-title"><span class="section-icon">03</span><span>兴趣爱好</span></h2><div class="personal-card card-hobbies"><div class="hobby-grid"><div class="hobby-item"><div class="hobby-emoji">01</div><span>阅读</span></div><div class="hobby-item"><div class="hobby-emoji">02</div><span>语言学习</span></div><div class="hobby-item"><div class="hobby-emoji">03</div><span>AI 探索</span></div><div class="hobby-item"><div class="hobby-emoji">04</div><span>写作</span></div><div class="hobby-item"><div class="hobby-emoji">05</div><span>摄影</span></div><div class="hobby-item"><div class="hobby-emoji">06</div><span>旅行</span></div></div></div></div></section><section class="about-section"><div class="about-container"><h2 class="about-section-title"><span class="section-icon">04</span><span>自我总结</span></h2><div class="personal-card card-summary"><div class="summary-text"><p>我是一名具备国际化视野与产品思维的应届毕业生。研究生期间，我在字节跳动、哔哩哔哩和波士顿科学等公司积累了丰富的产品运营与本地化实习经验。</p><p>我善于在复杂的跨文化环境中协调多方资源，推动产品方案的落地与优化。对 AI 与产品设计的结合充满热情，始终保持好奇心与学习力。</p><p>我的核心优势在于：</p><ul class="summary-points"><li>国际化产品设计与运营经验（10+ 语种）</li><li>数据驱动的产品分析与增长策略</li><li>AI 工具链搭建与工作流程优化</li><li>跨团队、跨时区的高效协作沟通</li></ul></div></div></div></section></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Quincy Zheng</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.6.2"></script><script src="/js/main.js?v=5.6.2"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
