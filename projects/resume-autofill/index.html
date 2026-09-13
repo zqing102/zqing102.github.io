@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>简历填表助手 · 在线工作台</title>
+<meta name="description" content="整理一次个人资料，集中管理招聘网站，逐站核对后由你本人手动提交。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23315bef'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E5%A1%AB%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="brand">
+      <span class="brandmark">填</span>
+      <div class="brand-text">
+        <strong>简历填表助手</strong>
+        <small>在线工作台</small>
+      </div>
+    </div>
+    <nav class="nav" aria-label="主导航">
+      <button class="nav-btn is-active" data-tab="profile">我的资料</button>
+      <button class="nav-btn" data-tab="tasks">招聘任务</button>
+      <button class="nav-btn" data-tab="guide">使用说明</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <!-- 我的资料 -->
+  <section id="tab-profile" class="panel">
+    <div class="page-head">
+      <div>
+        <h1>一次整理，多次复用</h1>
+        <p>填写真实资料，自动保存在本机浏览器。填写招聘表单时逐项核对，最终提交始终由你完成。</p>
+      </div>
+      <div class="page-actions">
+        <label class="btn file-btn">
+          导入 JSON
+          <input id="import-json" type="file" accept=".json" hidden>
+        </label>
+        <button id="export-json" class="btn">导出 JSON</button>
+        <button id="demo-profile" class="btn">载入示例</button>
+        <button id="clear-profile" class="btn danger">清空资料</button>
+      </div>
+    </div>
+
+    <div class="status-line">
+      <span class="dot"></span>
+      <span id="save-note">修改会自动保存在本机浏览器，不会上传到任何服务器。</span>
+    </div>
+
+    <div id="profile-editor"></div>
+  </section>
+
+  <!-- 招聘任务 -->
+  <section id="tab-tasks" class="panel" hidden>
+    <div class="page-head">
+      <div>
+        <h1>招聘任务清单</h1>
+        <p>每行粘贴一个招聘网址，集中记录进度，避免漏投或重复投递。</p>
+      </div>
+      <div class="page-actions">
+        <button id="export-tasks" class="btn">导出清单</button>
+        <button id="clear-tasks" class="btn danger">清空清单</button>
+      </div>
+    </div>
+
+    <article class="card">
+      <label for="task-urls">招聘网址（每行一个）</label>
+      <textarea id="task-urls" rows="3" placeholder="https://公司招聘网站/岗位或简历页面"></textarea>
+      <div class="actions">
+        <button id="add-tasks" class="btn primary">添加到清单</button>
+        <span class="hint">支持一次粘贴多行，也会自动过滤重复网址。</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>我的清单 <span class="tag" id="task-count">0 个</span></h2>
+      </div>
+      <div id="task-list" class="task-list"></div>
+    </article>
+  </section>
+
+  <!-- 使用说明 -->
+  <section id="tab-guide" class="panel" hidden>
+    <div class="page-head">
+      <div>
+        <h1>使用说明</h1>
+        <p>本页面负责资料整理与任务管理；真正打开浏览器自动填表由本机版完成。</p>
+      </div>
+    </div>
+
+    <article class="card">
+      <h2>四步流程</h2>
+      <ol class="steps">
+        <li><b>整理资料</b><span>在「我的资料」填写或导入简历，核对后保存在本机浏览器。</span></li>
+        <li><b>添加网站</b><span>在「招聘任务」粘贴招聘网址，形成清单。</span></li>
+        <li><b>本机填写</b><span>在电脑上启动本机版，打开真实浏览器登录并批量扫描、填写。</span></li>
+        <li><b>人工提交</b><span>逐站核对内容，由你本人点击最终提交。工具不会自动投递。</span></li>
+      </ol>
+    </article>
+
+    <article class="card">
+      <h2>启动本机版</h2>
+      <p>自动填表需要操作你电脑上的浏览器，因此必须在自己的设备上运行，不能在公网服务器上完成。</p>
+      <pre class="code">python -m pip install -r requirements.txt
+python -m playwright install chromium
+python run.py</pre>
+      <p class="hint">Windows 可直接双击 <code>start.bat</code>。启动后打开 http://127.0.0.1:8765，端口冲突时使用 <code>python run.py --port 8766</code>。</p>
+    </article>
+
+    <article class="card">
+      <h2>关于数据</h2>
+      <ul class="plain">
+        <li>本页面使用浏览器 <code>localStorage</code> 保存资料和清单，数据只在你当前的浏览器里。</li>
+        <li>点击「导出 JSON」可获得与本机版兼容的档案文件，可随时备份或迁移。</li>
+        <li>换浏览器或清除站点数据会丢失内容，建议定期导出备份。</li>
+        <li>可导出的档案包含个人信息，请勿上传到公共网盘或分享给他人。</li>
+      </ul>
+    </article>
+  </section>
+</main>
+
+<footer class="wrap">
+  资料应真实完整 · 最终提交由本人完成</footer>
+
+<script src="./app.js"></script>
+</body>
+</html>
