@@ -4,131 +4,254 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>简历填表助手 · 在线工作台</title>
-<meta name="description" content="整理一次个人资料，集中管理招聘网站，逐站核对后由你本人手动提交。">
+<meta name="description" content="整理一次个人资料，用 Chrome 扩展在真实招聘页面逐项填写，集中管理投递进度，最终提交始终由你本人完成。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23315bef'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E5%A1%AB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-<header class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <span class="brandmark">填</span>
-      <div class="brand-text">
-        <strong>简历填表助手</strong>
-        <small>在线工作台</small>
-      </div>
-    </div>
-    <nav class="nav" aria-label="主导航">
-      <button class="nav-btn is-active" data-tab="profile">我的资料</button>
-      <button class="nav-btn" data-tab="tasks">招聘任务</button>
-      <button class="nav-btn" data-tab="guide">使用说明</button>
-    </nav>
-  </div>
-</header>
+<aside>
+  <div class="brand"><span class="brandmark">填</span><div>简历填表助手<small>RECRUITMENT ASSISTANT</small></div></div>
+  <nav aria-label="主导航">
+    <button class="nav active" data-tab="profile">01 <span>我的资料</span></button>
+    <button class="nav" data-tab="tasks">02 <span>招聘任务</span></button>
+    <button class="nav" data-tab="extension">03 <span>浏览器扩展</span></button>
+    <button class="nav" data-tab="demo">04 <span>填写演示</span></button>
+    <button class="nav" data-tab="guide">05 <span>使用说明</span></button>
+  </nav>
+  <div class="aside-note"><span class="dot"></span> 人工掌握最后一步<p>资料复用，逐项核对。<br>最终提交始终由你操作。</p></div>
+</aside>
 
-<main class="wrap">
-  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<main>
+  <header><span id="eyebrow">ONLINE WORKBENCH</span><div class="pill">浏览器本地预览 <span class="dot"></span></div></header>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
 
-  <!-- 我的资料 -->
-  <section id="tab-profile" class="panel">
-    <div class="page-head">
-      <div>
-        <h1>一次整理，多次复用</h1>
-        <p>填写真实资料，自动保存在本机浏览器。填写招聘表单时逐项核对，最终提交始终由你完成。</p>
-      </div>
-      <div class="page-actions">
-        <label class="btn file-btn">
-          导入 JSON
-          <input id="import-json" type="file" accept=".json" hidden>
-        </label>
-        <button id="export-json" class="btn">导出 JSON</button>
-        <button id="demo-profile" class="btn">载入示例</button>
-        <button id="clear-profile" class="btn danger">清空资料</button>
-      </div>
+  <!-- 01 我的资料 -->
+  <section id="tab-profile" class="tab">
+    <div class="heading">
+      <div><h1>一次整理，多次复用。</h1><p>填写真实资料并逐项核对。导出的档案与本机版、浏览器扩展完全兼容，可直接导入。</p></div>
+      <span class="tag blue">本地预览</span>
     </div>
 
-    <div class="status-line">
-      <span class="dot"></span>
-      <span id="save-note">修改会自动保存在本机浏览器，不会上传到任何服务器。</span>
-    </div>
+    <article class="card">
+      <div class="card-head"><h2>导入与备份</h2><span class="tag">JSON</span></div>
+      <label class="drop">选择档案 JSON 文件<input id="import-json" type="file" accept=".json"></label>
+      <div class="actions">
+        <button id="export-json" class="primary">导出个人档案</button>
+        <button id="demo-profile">载入示例</button>
+        <button id="clear-profile" class="danger">清空资料</button>
+      </div>
+      <p class="hint" id="save-note">本页资料只保存在当前浏览器的本地存储中，不会上传到任何服务器。真正的扫描与填写由本机版或浏览器扩展完成。</p>
+    </article>
 
     <div id="profile-editor"></div>
   </section>
 
-  <!-- 招聘任务 -->
-  <section id="tab-tasks" class="panel" hidden>
-    <div class="page-head">
-      <div>
-        <h1>招聘任务清单</h1>
-        <p>每行粘贴一个招聘网址，集中记录进度，避免漏投或重复投递。</p>
-      </div>
-      <div class="page-actions">
-        <button id="export-tasks" class="btn">导出清单</button>
-        <button id="clear-tasks" class="btn danger">清空清单</button>
-      </div>
+  <!-- 02 招聘任务 -->
+  <section id="tab-tasks" class="tab" hidden>
+    <div class="heading">
+      <div><h1>一份清单，多个机会。</h1><p>粘贴招聘网址建立清单，记录企业、岗位与填写进度，避免漏投或重复投递。</p></div>
+      <span class="tag blue">任务台账</span>
     </div>
 
     <article class="card">
-      <label for="task-urls">招聘网址（每行一个）</label>
+      <div class="card-head"><h2>添加招聘网址</h2></div>
+      <label for="task-urls">招聘网址（每行一个，可一次添加多个公司）</label>
       <textarea id="task-urls" rows="3" placeholder="https://公司招聘网站/岗位或简历页面"></textarea>
       <div class="actions">
-        <button id="add-tasks" class="btn primary">添加到清单</button>
-        <span class="hint">支持一次粘贴多行，也会自动过滤重复网址。</span>
+        <button id="add-tasks" class="primary">添加到清单</button>
+        <span class="hint">会自动过滤重复网址，并由网址推断企业名称。</span>
       </div>
     </article>
 
     <article class="card">
       <div class="card-head">
-        <h2>我的清单 <span class="tag" id="task-count">0 个</span></h2>
+        <h2>我的清单 <span class="tag" id="task-count">0 个网站</span></h2>
+        <div class="actions"><button id="export-tasks">导出清单</button><button id="clear-tasks" class="danger">清空清单</button></div>
       </div>
-      <div id="task-list" class="task-list"></div>
+      <div id="task-empty" class="empty">还没有任务。在上方粘贴招聘网址，点击「添加到清单」。</div>
+      <div class="table-wrap" id="task-wrap" hidden>
+        <table>
+          <thead><tr><th>企业</th><th>岗位</th><th>创建时间</th><th>状态</th><th>识别</th><th>填写</th><th>待人工</th><th>操作</th></tr></thead>
+          <tbody id="task-list"></tbody>
+        </table>
+      </div>
+      <p class="hint">「识别 / 填写 / 待人工」沿用扩展扫描与填写后上报的字段数口径，也可以手动记录。「已投递」只能由你手动标记——工具无法确认一次投递真的成功了。</p>
     </article>
   </section>
 
-  <!-- 使用说明 -->
-  <section id="tab-guide" class="panel" hidden>
-    <div class="page-head">
-      <div>
-        <h1>使用说明</h1>
-        <p>本页面负责资料整理与任务管理；真正打开浏览器自动填表由本机版完成。</p>
-      </div>
+  <!-- 03 浏览器扩展 -->
+  <section id="tab-extension" class="tab" hidden>
+    <div class="heading">
+      <div><h1>在真实招聘页面里填写。</h1><p>加载本机扩展后，直接在招聘网站上识别表单、逐项核对，提交仍由你完成。</p></div>
+      <span class="tag blue">EXTENSION</span>
     </div>
 
     <article class="card">
-      <h2>四步流程</h2>
+      <div class="card-head"><h2>三步开始</h2><span class="tag">Manifest V3</span></div>
       <ol class="steps">
-        <li><b>整理资料</b><span>在「我的资料」填写或导入简历，核对后保存在本机浏览器。</span></li>
-        <li><b>添加网站</b><span>在「招聘任务」粘贴招聘网址，形成清单。</span></li>
-        <li><b>本机填写</b><span>在电脑上启动本机版，打开真实浏览器登录并批量扫描、填写。</span></li>
-        <li><b>人工提交</b><span>逐站核对内容，由你本人点击最终提交。工具不会自动投递。</span></li>
+        <li><b>加载</b><span>Chrome 打开 <code>chrome://extensions</code>，开启右上角「开发者模式」，点击「加载已解压的扩展程序」，选择项目里的 <code>extension</code> 目录。</span></li>
+        <li><b>配对</b><span>启动本机版服务后，在任意招聘页面点开扩展图标，点一次「连接本机服务」。扩展会自动申请配对令牌，服务不在默认端口时也可手动粘贴。</span></li>
+        <li><b>扫描填写</b><span>点「扫描页面」→ 勾选要填的字段 →「填写勾选字段」。核对页面高亮后，自己点击提交。</span></li>
       </ol>
     </article>
 
     <article class="card">
-      <h2>启动本机版</h2>
-      <p>自动填表需要操作你电脑上的浏览器，因此必须在自己的设备上运行，不能在公网服务器上完成。</p>
-      <pre class="code">python -m pip install -r requirements.txt
-python -m playwright install chromium
-python run.py</pre>
-      <p class="hint">Windows 可直接双击 <code>start.bat</code>。启动后打开 http://127.0.0.1:8765，端口冲突时使用 <code>python run.py --port 8766</code>。</p>
+      <div class="card-head"><h2>置信度分档</h2><span class="tag">≥0.85 / 0.6–0.85 / &lt;0.6</span></div>
+      <p>每个字段按匹配置信度分三档，填写后直接在页面上用描边标出来，右下角有图例说明：</p>
+      <div class="legend">
+        <span class="legend-item"><i class="swatch auto"></i><b>已填写</b>识别明确，直接写入</span>
+        <span class="legend-item"><i class="swatch review"></i><b>待确认</b>部分匹配，已写入但请核对</span>
+        <span class="legend-item"><i class="swatch manual"></i><b>需人工</b>未识别或属于敏感字段，不填</span>
+      </div>
+      <p class="hint">识别不到的控件、日期精度不足、复杂级联选择，以及密码、验证码、证件号、薪酬和条款勾选，都会落到「需人工」，而不是猜一个值填进去。</p>
     </article>
 
     <article class="card">
-      <h2>关于数据</h2>
+      <div class="card-head"><h2>不会替你做的事</h2></div>
       <ul class="plain">
-        <li>本页面使用浏览器 <code>localStorage</code> 保存资料和清单，数据只在你当前的浏览器里。</li>
-        <li>点击「导出 JSON」可获得与本机版兼容的档案文件，可随时备份或迁移。</li>
+        <li>不点击提交、投递、申请、Apply 类按钮；填写期间拦截页面的自动 <code>submit</code> / <code>requestSubmit</code>。</li>
+        <li>不自动登录：检测到密码框或验证码就暂停并提示，由你先完成登录。</li>
+        <li>不跨源扫描：跨源框架会被列出来，但无法识别其中的字段，需要人工填写。</li>
+        <li>不把「填完」记成「已投递」：投递状态只由你手动标记，重新扫描也不会改回去。</li>
+        <li>不上传资料：扩展只取填写所需的字段值，不向招聘网站或任何第三方发送完整档案。</li>
+      </ul>
+      <div class="handoff">自动填写结束后，请在页面里检查所有内容，由你亲自点击最终提交。</div>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>重复经历怎么补</h2></div>
+      <p>多条经历不够时点「补齐重复经历」：只会点击名称以「添加 / 新增」开头的按钮，点完自动重新扫描。新出现的空行不会沿用上一行的数据——资料里没有那一条，就保持空白等人来填。</p>
+      <p class="hint">页面在填写中途新增字段时，扩展会提示「页面结构已变化」，建议重新扫描后再填写，避免按旧结构操作。</p>
+    </article>
+  </section>
+
+  <!-- 04 填写演示 -->
+  <section id="tab-demo" class="tab" hidden>
+    <div class="heading">
+      <div><h1>当场试一次填写。</h1><p>下面这张模拟表单跑的就是扩展里同一套引擎：扫描 → 按置信度分档 → 勾选 → 写入并高亮。提交按钮永远不会被自动点击。</p></div>
+      <span class="tag blue">LIVE DEMO</span>
+    </div>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>第 1 步 · 扫描</h2>
+        <div class="actions"><button id="demo-scan" class="primary">扫描这张表单</button><button id="demo-clear">清空高亮</button></div>
+      </div>
+      <p class="hint" id="demo-summary">尚未扫描。请先在「我的资料」里保存资料（或点「载入示例」），再点「扫描这张表单」。</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>第 2 步 · 核对并填写</h2>
+        <div class="actions">
+          <label class="check"><input id="demo-overwrite" type="checkbox"> 覆盖已有内容</label>
+          <button id="demo-fill" class="primary">填写勾选字段</button>
+        </div>
+      </div>
+      <div class="table-wrap" id="demo-plan-wrap" hidden>
+        <table>
+          <thead><tr><th>填写</th><th>页面字段</th><th>资料路径</th><th>拟填内容</th><th>置信度</th><th>分档</th></tr></thead>
+          <tbody id="demo-plan"></tbody>
+        </table>
+      </div>
+      <div id="demo-empty" class="empty">先点「扫描这张表单」，这里会列出每个字段的对应关系。</div>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>模拟招聘表单</h2><span class="tag">演示用，不会投递</span></div>
+      <form id="demo-form" novalidate>
+        <div class="demo-section">
+          <h3>基本信息</h3>
+          <div class="demo-grid">
+            <div><label for="d-name">姓名</label><input id="d-name" name="candidateName" placeholder="请输入姓名"></div>
+            <div><label for="d-candidate">候选人姓名</label><input id="d-candidate" name="candidateRealName"></div>
+            <div><label for="d-phone">手机号</label><input id="d-phone" name="mobile" type="tel"></div>
+            <div><label for="d-mail">邮箱</label><input id="d-mail" name="email" type="email"></div>
+            <div><label for="d-birth">出生日期</label><input id="d-birth" name="birthday" type="date"></div>
+            <div><label for="d-city">现居城市</label><input id="d-city" name="city"></div>
+            <div><label for="d-political">政治面貌</label><input id="d-political" name="politicalStatus"></div>
+            <div><label for="d-salary">期望薪资</label><input id="d-salary" name="expectedSalary"></div>
+            <div class="wide"><label for="d-summary">自我评价</label><textarea id="d-summary" name="summary" rows="2"></textarea></div>
+          </div>
+          <div class="demo-radios">
+            <span class="demo-label">性别</span>
+            <label class="check"><input type="radio" name="gender" value="male">男</label>
+            <label class="check"><input type="radio" name="gender" value="female">女</label>
+          </div>
+        </div>
+
+        <div class="demo-section">
+          <h3>教育经历</h3>
+          <div class="demo-grid">
+            <div><label for="d-school">学校</label><input id="d-school" name="school"></div>
+            <div><label for="d-major">专业</label><input id="d-major" name="major"></div>
+            <div><label for="d-degree">学历</label>
+              <select id="d-degree" name="degree">
+                <option value="">请选择</option><option value="associate">大专</option>
+                <option value="bachelor">本科</option><option value="master">硕士</option>
+              </select>
+            </div>
+            <div><label for="d-start">入学时间</label><input id="d-start" type="month" name="eduStart"></div>
+            <div><label for="d-end">毕业时间</label><input id="d-end" type="month" name="eduEnd"></div>
+            <div><label for="d-gpa">绩点</label><input id="d-gpa" name="gpa"></div>
+          </div>
+        </div>
+
+        <div class="demo-radios">
+          <label class="check"><input id="d-agree" type="checkbox" name="agree">我已阅读并同意隐私政策</label>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="d-add">＋ 添加教育经历</button>
+          <button type="submit" id="d-submit" class="primary">提交申请</button>
+        </div>
+        <div id="d-outcome" class="handoff" hidden></div>
+      </form>
+    </article>
+  </section>
+
+  <!-- 05 使用说明 -->
+  <section id="tab-guide" class="tab" hidden>
+    <div class="heading">
+      <div><h1>完整流程。</h1><p>本页负责资料整理与任务管理；真正打开浏览器自动填表，由「浏览器扩展」或「本机工作台」在你的电脑上完成。</p></div>
+    </div>
+
+    <article class="card">
+      <div class="card-head"><h2>四步流程</h2></div>
+      <ol class="steps">
+        <li><b>整理资料</b><span>在「我的资料」填写或导入简历，核对后导出成与本机版兼容的档案 JSON。</span></li>
+        <li><b>建立清单</b><span>在「招聘任务」粘贴招聘网址，记录企业、岗位与填写进度。</span></li>
+        <li><b>扫描填写</b><span>两条路二选一：加载「浏览器扩展」在自己打开的招聘页面上逐页填写；或启动本机工作台批量处理多个网站。</span></li>
+        <li><b>人工提交</b><span>逐站核对内容，由你本人点击最终提交。工具不会自动投递，也不会把「填完」记成「已投递」。</span></li>
+      </ol>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>启动本机版</h2></div>
+      <p>扩展与工作台都需要操作你电脑上的浏览器，因此必须在自己的设备上运行，不能在公网服务器上完成。</p>
+      <pre class="code">python -m pip install -r requirements.txt
+python -m playwright install chromium
+python run.py</pre>
+      <p class="hint">Windows 可直接双击 <code>start.bat</code>。启动后打开 http://127.0.0.1:8765，端口冲突时使用 <code>python run.py --port 8766</code>。只用浏览器扩展时不需要安装 Playwright 浏览器，本机工作台的批量填写才需要。</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head"><h2>关于数据</h2></div>
+      <ul class="plain">
+        <li>本页使用浏览器 <code>localStorage</code> 保存资料和清单，数据只在你当前的浏览器里。</li>
+        <li>点击「导出个人档案」可获得与本机版兼容的 JSON 文件，可随时备份或迁移。</li>
         <li>换浏览器或清除站点数据会丢失内容，建议定期导出备份。</li>
-        <li>可导出的档案包含个人信息，请勿上传到公共网盘或分享给他人。</li>
+        <li>导出的档案包含个人信息，请勿上传到公共网盘或分享给他人。</li>
       </ul>
     </article>
   </section>
+
+  <footer>基于 Auto-Fill-Forms 扩展 · 资料应真实完整 · 最终提交由本人完成</footer>
 </main>
 
-<footer class="wrap">
-  资料应真实完整 · 最终提交由本人完成</footer>
-
 <script src="./app.js"></script>
+<script src="./engine.js"></script>
+<script src="./demo.js"></script>
 </body>
 </html>

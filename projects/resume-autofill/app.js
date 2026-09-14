@@ -16,6 +16,8 @@ const SCHEMA = {
       { key: 'city', label: '现居城市', type: 'text' },
       { key: 'address_line', label: '详细地址', type: 'text' },
       { key: 'nationality', label: '国籍', type: 'text' },
+      { key: 'native_place', label: '籍贯', type: 'text' },
+      { key: 'political_status', label: '政治面貌', type: 'text' },
     ],
   },
   education: {
@@ -32,7 +34,7 @@ const SCHEMA = {
     ],
   },
   experience: {
-    title: '实习 / 工作经历', repeat: true,
+    title: '实习经历', repeat: true,
     fields: [
       { key: 'company', label: '公司名称', type: 'text' },
       { key: 'title', label: '职位', type: 'text' },
@@ -57,7 +59,7 @@ const SCHEMA = {
     title: '项目经历', repeat: true,
     fields: [
       { key: 'name', label: '项目名称', type: 'text' },
-      { key: 'title', label: '担任角色', type: 'text' },
+      { key: 'title', label: '项目角色', type: 'text' },
       { key: 'start', label: '开始时间', type: 'month' },
       { key: 'end', label: '结束时间', type: 'month' },
       { key: 'current', label: '仍在进行', type: 'checkbox' },
@@ -73,17 +75,26 @@ const SCHEMA = {
       { key: 'certifications_text', label: '证书', type: 'textarea' },
       { key: 'languages_text', label: '语言能力', type: 'textarea' },
       { key: 'portfolio', label: '作品集链接', type: 'text' },
+      { key: 'job_position', label: '求职意向', type: 'text' },
+      { key: 'expected_city', label: '期望城市', type: 'text' },
+      { key: 'available_date', label: '到岗时间', type: 'text' },
     ],
   },
 };
 
-const STATUS = [['todo', '待处理'], ['filled', '已填写'], ['submitted', '已投递']];
+// 与本机版的任务台账保持一致。「已投递」只由人工标记：工具无法确认一次投递是否真的
+// 成功，所以绝不替你判定。
+const STATUS = ['未开始', '填写中', '待确认', '已投递'];
+// 旧版本用的是英文状态码，读取本地存档时迁移过来。
+const STATUS_ALIAS = { todo: '未开始', filled: '待确认', submitted: '已投递' };
+const METRICS = [['detected', '识别'], ['filled', '填写'], ['manual', '待人工']];
 
 const DEMO_PROFILE = {
   personal_information: {
     full_name: '林知遥', gender: '女', date_of_birth: '2002-05-16',
     phone: '13800000000', email: 'lin.zhiyao@example.com',
     city: '杭州市', address_line: '', nationality: '中国',
+    native_place: '浙江杭州', political_status: '共青团员',
   },
   education: [{
     school: '示例大学', degree: '本科', field_of_study: '计算机科学与技术', gpa: '3.8 / 4.0',
@@ -118,7 +129,6 @@ const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 
 
 let profile = {};
 let tasks = [];
-let toastTimer = null;
 
 /* ---------- 数据 ---------- */
 
@@ -204,23 +214,24 @@ function load() {
 }
 
 function save() {
+  // 每次落盘都同步一次，「填写演示」读的是这里的最新资料。
+  window.RAF_PROFILE = profile;
   try {
     localStorage.setItem(STORE_KEY, JSON.stringify({ profile, tasks }));
     $('save-note').textContent = '已保存到本机浏览器 · ' + new Date().toLocaleTimeString('zh-CN');
   } catch (e) {
-    toast('浏览器存储不可用，请及时导出 JSON 备份。', true);
+    notice('浏览器存储不可用，请及时导出 JSON 备份。', true);
   }
 }
 
 /* ---------- 通用 UI ---------- */
 
-function toast(text, isError) {
-  const el = $('toast');
+// 与本机版一致：提示条显式展示并保留到下一次操作，不用定时器把结果藏起来。
+function notice(text, isError) {
+  const el = $('notice');
   el.hidden = false;
   el.textContent = text;
-  el.classList.toggle('is-error', !!isError);
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { el.hidden = true; }, 5000);
+  el.classList.toggle('error', !!isError);
 }
 
 function download(data, name) {
@@ -271,15 +282,15 @@ function renderEditor() {
     }
     const rows = profile[section];
     const entries = rows.map((row, i) => (
-      `<div class="entry">
-        <div class="entry-head"><strong>第 ${i + 1} 条</strong>
+      `<div class="experience">
+        <div class="experience-head"><strong>第 ${i + 1} 条</strong>
           <button type="button" data-remove="${section}" data-index="${i}">删除</button></div>
         <div class="grid">${spec.fields.map((f) => fieldHTML(section, f, row[f.key], i)).join('')}</div>
       </div>`
     )).join('');
     const hint = rows.length ? '' : '<p class="hint" style="margin:0">尚未添加，可从真实经历开始填写。</p>';
     return `<article class="card"><div class="card-head"><h2>${esc(spec.title)}</h2>`
-      + `<button type="button" class="btn" data-add="${section}">＋ 添加</button></div>${entries}${hint}</article>`;
+      + `<button type="button" data-add="${section}">＋ 添加经历</button></div>${entries}${hint}</article>`;
   }).join('');
 }
 
@@ -294,12 +305,12 @@ function onEdit(e) {
 
   if (key === 'current' && row[key]) {
     row.end = '';
-    const end = el.closest('.entry')?.querySelector('[data-key="end"]');
+    const end = el.closest('.experience')?.querySelector('[data-key="end"]');
     if (end) end.value = '';
   }
   if (key === 'end' && row[key]) {
     row.current = false;
-    const cur = el.closest('.entry')?.querySelector('[data-key="current"]');
+    const cur = el.closest('.experience')?.querySelector('[data-key="current"]');
     if (cur) cur.checked = false;
   }
   save();
@@ -334,15 +345,15 @@ $('import-json').addEventListener('change', async (e) => {
     profile = normalizeProfile(raw);
     save();
     renderEditor();
-    toast('已导入资料，请核对每一项后继续使用。');
+    notice('已导入资料，请核对每一项后继续使用。');
   } catch (err) {
-    toast('JSON 文件无法解析，请确认是从本页或本机版导出的档案。', true);
+    notice('JSON 文件无法解析，请确认是从本页或本机版导出的档案。', true);
   }
 });
 
 $('export-json').addEventListener('click', () => {
   download(profile, 'profile.json');
-  toast('已导出 profile.json，可导入本机版或作为备份。');
+  notice('已导出 profile.json，可导入本机版或作为备份。');
 });
 
 $('demo-profile').addEventListener('click', () => {
@@ -351,7 +362,7 @@ $('demo-profile').addEventListener('click', () => {
   profile = normalizeProfile(DEMO_PROFILE);
   save();
   renderEditor();
-  toast('已载入示例资料（虚构数据），可直接修改为你的真实内容。');
+  notice('已载入示例资料（虚构数据），可直接修改为你的真实内容。');
 });
 
 $('clear-profile').addEventListener('click', () => {
@@ -359,7 +370,7 @@ $('clear-profile').addEventListener('click', () => {
   profile = emptyProfile();
   save();
   renderEditor();
-  toast('已清空资料。');
+  notice('已清空资料。');
 });
 
 /* ---------- 任务清单 ---------- */
@@ -368,41 +379,65 @@ function hostOf(url) {
   try { return new URL(url).hostname; } catch (e) { return ''; }
 }
 
+function companyFromUrl(url) {
+  const host = hostOf(url).toLowerCase();
+  const stripped = ['www.', 'm.', 'jobs.', 'job.', 'careers.', 'apply.']
+    .reduce((acc, prefix) => (
+      acc.startsWith(prefix) && acc.split('.').length > 2 ? acc.slice(prefix.length) : acc
+    ), host);
+  return stripped || host;
+}
+
+function formatDate(value) {
+  const date = value ? new Date(value) : null;
+  return date && !Number.isNaN(date.getTime())
+    ? date.toLocaleDateString('zh-CN')
+    : '—';
+}
+
+// 与本机版「浏览器扩展」页的任务台账同构：企业、岗位、创建时间、状态、三项字段数。
 function renderTasks() {
-  $('task-count').textContent = tasks.length + ' 个';
-  const list = $('task-list');
-  if (!tasks.length) {
-    list.innerHTML = '<div class="empty">还没有任务。在上方粘贴招聘网址，点击「添加到清单」。</div>';
-    return;
-  }
-  list.innerHTML = tasks.map((t, i) => (
-    `<div class="task">
-      <span class="idx">${i + 1}</span>
-      <div class="info">
-        <a class="url" href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">${esc(t.url)}</a>
-        <div class="domain">${esc(hostOf(t.url))}</div>
-      </div>
-      <select data-status="${t.id}" aria-label="投递进度">
-        ${STATUS.map(([v, l]) => `<option value="${v}" ${t.status === v ? 'selected' : ''}>${l}</option>`).join('')}
-      </select>
-      <button class="del" data-del="${t.id}" aria-label="删除该任务">✕</button>
-    </div>`
+  $('task-count').textContent = tasks.length + ' 个网站';
+  $('task-empty').hidden = tasks.length > 0;
+  $('task-wrap').hidden = tasks.length === 0;
+  $('task-list').innerHTML = tasks.map((t) => (
+    `<tr>
+      <td>
+        <input data-field="company" data-id="${t.id}" value="${esc(t.company)}" placeholder="企业名称" aria-label="企业名称">
+        <small><a href="${esc(t.url)}" target="_blank" rel="noopener noreferrer">${esc(t.url)}</a></small>
+      </td>
+      <td><input data-field="position" data-id="${t.id}" value="${esc(t.position)}" placeholder="应聘岗位" aria-label="应聘岗位"></td>
+      <td>${esc(formatDate(t.created_at))}</td>
+      <td><select data-status="${t.id}" aria-label="任务状态">
+        ${STATUS.map((v) => `<option value="${v}" ${t.status === v ? 'selected' : ''}>${v}</option>`).join('')}
+      </select></td>
+      ${METRICS.map(([key, label]) => (
+        `<td><input class="num" type="number" min="0" data-field="${key}" data-id="${t.id}"`
+        + ` value="${Number(t[key]) || 0}" aria-label="${label}字段数"></td>`
+      )).join('')}
+      <td><button class="danger" data-del="${t.id}" aria-label="删除该任务">删除</button></td>
+    </tr>`
   )).join('');
 }
 
 $('add-tasks').addEventListener('click', () => {
   const input = $('task-urls');
   const urls = input.value.split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
-  if (!urls.length) { toast('请先粘贴至少一个招聘网址。', true); return; }
+  if (!urls.length) { notice('请先粘贴至少一个招聘网址。', true); return; }
 
   const invalid = urls.find((u) => !/^https?:\/\/\S+$/i.test(u));
-  if (invalid) { toast('网址需要以 http:// 或 https:// 开头：' + invalid, true); return; }
+  if (invalid) { notice('网址需要以 http:// 或 https:// 开头：' + invalid, true); return; }
 
   let added = 0;
   let duplicated = 0;
   for (const url of urls) {
     if (tasks.some((t) => t.url === url)) { duplicated++; continue; }
-    tasks.push({ id: uid(), url, status: 'todo' });
+    tasks.push({
+      id: uid(), url, status: '未开始',
+      company: companyFromUrl(url), position: '',
+      detected: 0, filled: 0, manual: 0,
+      created_at: new Date().toISOString(),
+    });
     added++;
   }
   input.value = '';
@@ -410,9 +445,9 @@ $('add-tasks').addEventListener('click', () => {
   renderTasks();
 
   if (added) {
-    toast(`已添加 ${added} 个网址` + (duplicated ? `，跳过 ${duplicated} 个重复项。` : '。'));
+    notice(`已添加 ${added} 个网址` + (duplicated ? `，跳过 ${duplicated} 个重复项。` : '。'));
   } else {
-    toast('这些网址已经在清单中。');
+    notice('这些网址已经在清单中。');
   }
 });
 
@@ -425,6 +460,18 @@ $('task-list').addEventListener('change', (e) => {
   save();
 });
 
+// 企业、岗位和字段统计直接就地编辑。这里刻意不重绘列表：重绘会打断输入焦点。
+$('task-list').addEventListener('input', (e) => {
+  const { field, id } = e.target.dataset;
+  if (!field || !id) return;
+  const task = tasks.find((t) => t.id === id);
+  if (!task) return;
+  task[field] = METRICS.some(([key]) => key === field)
+    ? Math.max(0, Number(e.target.value) || 0)
+    : e.target.value;
+  save();
+});
+
 $('task-list').addEventListener('click', (e) => {
   const id = e.target.dataset.del;
   if (!id) return;
@@ -434,26 +481,36 @@ $('task-list').addEventListener('click', (e) => {
 });
 
 $('export-tasks').addEventListener('click', () => {
-  if (!tasks.length) { toast('清单还是空的。', true); return; }
+  if (!tasks.length) { notice('清单还是空的。', true); return; }
   download({ exported_at: new Date().toISOString(), tasks }, 'recruitment-tasks.json');
-  toast('已导出招聘任务清单。');
+  notice('已导出招聘任务清单。');
 });
 
 $('clear-tasks').addEventListener('click', () => {
-  if (!tasks.length) { toast('清单还是空的。', true); return; }
+  if (!tasks.length) { notice('清单还是空的。', true); return; }
   if (!window.confirm('确定清空全部任务？资料不会被删除。')) return;
   tasks = [];
   save();
   renderTasks();
-  toast('已清空任务清单。');
+  notice('已清空任务清单。');
 });
 
 /* ---------- 导航与初始化 ---------- */
 
-document.querySelectorAll('.nav-btn').forEach((btn) => {
+// 与本机版同一套切换方式：侧栏 .nav 按钮 + .tab 分节，并同步顶部 eyebrow。
+const EYEBROW = {
+  profile: 'YOUR PROFILE',
+  tasks: 'APPLICATION TASKS',
+  extension: 'EXTENSION BRIDGE',
+  guide: 'HOW IT WORKS',
+  demo: 'LIVE FILL DEMO',
+};
+
+document.querySelectorAll('.nav').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.nav-btn').forEach((b) => b.classList.toggle('is-active', b === btn));
-    document.querySelectorAll('.panel').forEach((p) => { p.hidden = p.id !== 'tab-' + btn.dataset.tab; });
+    document.querySelectorAll('.nav').forEach((b) => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab').forEach((t) => { t.hidden = t.id !== 'tab-' + btn.dataset.tab; });
+    if (EYEBROW[btn.dataset.tab]) $('eyebrow').textContent = EYEBROW[btn.dataset.tab];
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
@@ -462,8 +519,25 @@ const stored = load();
 profile = normalizeProfile(stored.profile);
 tasks = Array.isArray(stored.tasks)
   ? stored.tasks.filter((t) => t && typeof t.url === 'string' && t.url)
-    .map((t) => ({ id: t.id || uid(), url: t.url, status: STATUS.some(([v]) => v === t.status) ? t.status : 'todo' }))
+    .map((t) => {
+      // 兼容只存网址和英文状态码的旧存档。
+      const status = STATUS_ALIAS[t.status] || (STATUS.includes(t.status) ? t.status : '未开始');
+      const count = (v) => Math.max(0, Number(v) || 0);
+      return {
+        id: t.id || uid(),
+        url: t.url,
+        status,
+        company: typeof t.company === 'string' ? t.company : companyFromUrl(t.url),
+        position: typeof t.position === 'string' ? t.position : '',
+        detected: count(t.detected),
+        filled: count(t.filled),
+        manual: count(t.manual),
+        created_at: t.created_at || new Date().toISOString(),
+      };
+    })
   : [];
 
 renderEditor();
 renderTasks();
+// 供「填写演示」读取当前资料。
+window.RAF_PROFILE = profile;
